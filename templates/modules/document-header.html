@@ -1,0 +1,39 @@
+<header class="header" id="header-main">
+    <!-- Main navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg fixed-top navbar-shadow navbar-light bg-white border-bottom" id="navbar-main">
+        <div class="container-fluid justify-content-between">
+            <!-- User's navbar -->
+            <div class="navbar-user d-lg-none">
+                <ul class="navbar-nav flex-row align-items-center">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link nav-link-icon sidenav-toggler" data-action="sidenav-pin" data-target="#sidenav-main"><i data-feather="menu"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Navbar brand -->
+            <a class="navbar-brand" href="/">
+                <img alt="Image placeholder" th:src="@{${site.logo}}" id="navbar-logo">
+                <sup class="text-muted text-xs text-uppercase">文档中心</sup>
+            </a>
+            <!-- Live preview -->
+            <ul class="navbar-nav flex-row align-items-center d-lg-none">
+                <li class="nav-item">
+                    <a href="/" class="nav-link nav-link-icon"><i data-feather="eye"></i></a>
+                </li>
+            </ul>
+            <!-- Navbar nav -->
+            <div class="collapse navbar-collapse" id="navbar-main-collapse">
+                <!-- Right menu -->
+                <ul class="d-none navbar-nav align-items-center mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">首页</a>
+                    </li>
+                </ul>
+            </div>
+            <a href="/" class="btn btn-sm btn-primary ml-4 btn-icon d-none d-lg-inline-flex">
+                <span class="btn-inner--icon"><i data-feather="chevron-left"></i></span>
+                <span class="btn-inner--text">首页</span>
+            </a>
+        </div>
+    </nav>
+</header>

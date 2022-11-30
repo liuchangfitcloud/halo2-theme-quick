@@ -1,0 +1,27 @@
+apiVersion: theme.halo.run/v1alpha1
+kind: Theme
+metadata:
+  name: theme-quick
+spec:
+  displayName: Quick
+  author:
+    name: shrChang.Liu
+    website: https://shrChang.club
+  description: Halo Theme Quick for Bootstrap
+  logo: /themes/theme-quick/assets/images/logo.svg
+  website: https://github.com/halo-sigs/theme-quick
+  repo: https://github.com/halo-sigs/theme-quick.git
+  settingName: "theme-quick-setting"
+  configMapName: "theme-quick-configMap"
+  version: 1.0.0
+  require: 2.0.0
+  customTemplates:
+    page:
+      - name: 关于我们
+        description: 关于我们
+        screenshot: 
+        file: about.html
+      - name: 文档中心
+        description: 文档中心
+        screenshot: 
+        file: document.html       

@@ -1,0 +1,401 @@
+apiVersion: v1alpha1
+kind: Setting
+metadata:
+  name: theme-quick-setting
+spec:
+  forms:
+    - group: header
+      label: 头部
+      formSchema:
+        - $formkit: radio
+          name: open_gonggao
+          id: open_gonggao
+          key: open_gonggao
+          label: 是否开启公告
+          value: true
+          options:
+            - label: 是
+              value: true
+            - label: 否
+              value: false
+        - $formkit: text
+          if: "$get(open_gonggao).value"
+          name: gonggao_text
+          label: 公告内容
+          value: 热烈祝贺畅行科技成立十周年
+        - $formkit: radio
+          name: open_bnt
+          id: open_bnt
+          key: open_bnt
+          label: 显示按钮
+          value: true
+          options:
+            - label: 是
+              value: true
+            - label: 否
+              value: false
+        - $formkit: text
+          if: "$get(open_bnt).value"
+          name: btn_name
+          label: 按钮名称
+          value: 登录 
+        - $formkit: text
+          if: "$get(open_bnt).value"
+          name: btn_href
+          label: 跳转地址
+          value: https://demo.halo.run
+    - group: homePage
+      label: 首页顶部
+      formSchema:
+        - $formkit: radio
+          name: showDiv
+          label: 是否显示介绍
+          value: true
+          options:
+            - label: 是
+              value: true
+            - label: 否
+              value: false
+        - $formkit: text
+          name: title
+          label: 标题
+          value: 欢迎来到畅行科技
+        - $formkit: text
+          name: desc
+          label: 描述
+          value: 畅行科技只为生活
+        - $formkit: attachment
+          name: bgImg
+          id: bgImg
+          key: bgImg
+          label: 介绍背景图片
+          value: /themes/theme-fish/assets/img/backgrouds/img-1.jpg
+        - $formkit: radio
+          name: showPriBnt
+          id: showPriBnt
+          key: showPriBnt
+          label: 显示主按钮
+          value: true
+          options:
+            - label: 是
+              value: true
+            - label: 否
+              value: false
+        - $formkit: text
+          if: "$get(showPriBnt).value"
+          name: priBtnName
+          label: 按钮名称
+          value: 快速开始
+        - $formkit: text
+          if: "$get(showPriBnt).value"
+          name: priBtnHerf
+          label: 跳转地址
+          value: https://www.metersphere.com
+        - $formkit: radio
+          name: showSecBnt
+          label: 显示次按钮
+          id: showSecBnt
+          key: showSecBnt
+          value: true
+          options:
+            - label: 是
+              value: true
+            - label: 否
+              value: false
+        - $formkit: text
+          if: "$get(showSecBnt).value"
+          name: secBtnName
+          label: 按钮名称
+          value: 解决方案
+        - $formkit: text
+          if: "$get(showSecBnt).value"
+          name: secBtnHerf
+          label: 跳转地址
+          value: https://www.metersphere.com
+    - group: homePageOne
+      label: 首页中部
+      formSchema:
+        - $formkit: radio
+          name: enable
+          id: enable
+          key: enable
+          label: 是否开启
+          value: true
+          options:
+            - label: 是
+              value: true
+            - label: 否
+              value: false
+        - $formkit: text
+          if: "$get(enable).value"
+          name: title
+          label: 标题
+          value: "畅行科技宇宙第一"
+        - $formkit: textarea
+          if: "$get(enable).value"
+          name: desc
+          label: 描述
+          value: "这是标题下面的描述" 
+        - $formkit: repeater
+          if: "$get(enable).value"
+          name: clist
+          id: clist
+          key: clist
+          label: 卡片列表
+          value: []
+          help: 图片的高度固定时150px 只能固定三个
+          children:
+            - $formkit: text
+              name: title
+              label: 标题
+            - $formkit: text
+              name: desc
+              label: 描述
+            - $formkit: attachment
+              name: img
+              id: img
+              key: img
+              label: 图片            
+    - group: homePageTwo
+      label: 首页底部
+      formSchema:
+        - $formkit: radio
+          name: enable
+          id: enable
+          key: enable
+          label: 是否开启
+          value: true
+          options:
+            - label: 是
+              value: true
+            - label: 否
+              value: false
+        - $formkit: repeater
+          if: "$get(enable).value"
+          name: cList
+          id: cList
+          key: cList
+          help: "可以多个不同的卡片"
+          label: 卡片列表
+          value: []
+          children:
+            - $formkit: text
+              name: title
+              label: 标题
+            - $formkit: text
+              name: desc
+              label: 描述
+            - $formkit: attachment
+              name: img
+              id: img
+              key: img
+              label: 图片
+            - $formkit: repeater
+              name: detailList
+              id: detailList
+              key: detailList
+              label: 明细
+              value: []
+              children:
+                - $formkit: text
+                  name: desc
+                  label: 描述
+        - $formkit: radio
+          name: openPrice
+          id: openPrice
+          key: openPrice
+          label: 是否配置价格
+          value: true
+          options:
+            - label: 是
+              value: true
+            - label: 否
+              value: false
+        - $formkit: text
+          if: "$get(openPrice).value"
+          name: title
+          id: title
+          key: title
+          label: 标题
+          value: 欢迎选购
+        - $formkit: text
+          if: "$get(openPrice).value"
+          name: desc
+          id: desc
+          key: desc
+          label: 描述
+          value: 选择我们就对了    
+        - $formkit: repeater
+          if: "$get(openPrice).value"
+          name: pList
+          id: pList
+          key: pList
+          help: 可以配置2种价格
+          label: 价格列表
+          value: [{"name":"团队版","num":"600","showBtn":true,"btnName":"免费试用","btnHerf":"/","dList":[{"name":"开源版全部功能"},{"name":"X-Pack 功能增强包"},{"name":"赠送 12 万 VUM 配额"},{"name":"支持 5 个自定义项目"},{"name":"支持 20 个团队成员"}]},{"name":"旗舰版","num":"1800","showBtn":true,"btnName":"预约演示","btnHerf":"/about","dList":[{"name":"开源版全部功能"},{"name":"X-Pack 功能增强包"},{"name":"赠送 48 万 VUM 配额"},{"name":"项目数量不限"},{"name":"支持 100 个团队成员"},{"name":"专属客服服务"}]}]
+          children:
+            - $formkit: text
+              name: name
+              label: 产品名称
+            - $formkit: text
+              name: num
+              label: 价格
+            - $formkit: radio
+              name: showBtn
+              label: 显示按钮
+              value: false
+              options:
+                - label: 是
+                  value: true
+                - label: 否
+                  value: false
+            - $formkit: text
+              if: "$get(showBtn).value"
+              name: btnName
+              label: 按钮名称
+            - $formkit: text
+              if: "$get(showBtn).value"
+              name: btnHerf
+              label: 链接地址          
+            - $formkit: repeater
+              name: dList
+              id: dList
+              key: dList
+              help: 产品描述列表
+              label: 产品描述列表
+              value: []
+              children:
+                - $formkit: text
+                  name: name
+                  label: 描述
+    - group: footer
+      label: 页脚
+      formSchema:
+        - $formkit: textarea
+          name: desc
+          label: 描述
+          value: "畅行科技为效率而生"
+        - $formkit: repeater
+          name: menus
+          id: menus
+          key: menus
+          label: 底部菜单
+          help: 只会显示一级菜单
+          value: []
+          children:
+            - $formkit: menuRadio
+              name: name
+              label: 菜单
+              validation: "required"
+        - $formkit: text
+          name: copyright
+          label: 版权信息
+          value: "© 2022 广州畅行信息科技有限公司 版权所有"
+        - $formkit: repeater
+          name: link
+          id: link
+          key: link
+          label: 底部链接
+          value: [
+            {name: 使用条款, herf: https://www.metersphere.com},
+            {name: 隐私条款, herf: https://www.metersphere.com},
+            {name: 社区软件许可协议, herf: https://www.metersphere.com}
+          ]
+          children:
+            - $formkit: text
+              name: name
+              label: 链接名称
+            - $formkit: text
+              name: href
+              label: 链接地址
+    - group: aboutUs
+      label: 关于我们
+      formSchema:
+        - $formkit: text
+          name: title
+          id: title
+          key: title
+          label: 标题
+          value: 畅行科技世界第一
+        - $formkit: textarea
+          name: titleDesc
+          id: titleDesc
+          key: titleDesc
+          label: 标题描述
+          value: 畅行科技致力于发展成为世界第一的SAAS服务提供商
+        - $formkit: textarea
+          name: vision
+          id: vision
+          key: vision
+          label: 愿景
+          value: 畅行科技致力于发展成为世界第一的SAAS服务提供商
+        - $formkit: repeater
+          name: visionImgList
+          id: visionImgList
+          key: visionImgList
+          label: 愿景下的图片
+          help: 请选择图片
+          value: []
+          children:
+            - $formkit: attachment
+              name: priImg
+              id: priImg
+              key: priImg
+              label: 主图片
+              validation: "required"
+            - $formkit: attachment
+              name: secImg
+              id: secImg
+              key: secImg
+              label: 副图片  
+              validation: "required"
+        - $formkit: repeater
+          name: teamList
+          id: teamList
+          key: teamList
+          label: 团队列表
+          help: 请添加团队成员
+          value: []  
+          children:
+            - $formkit: attachment
+              name: photo
+              id: photo
+              key: photo
+              label: 成员照片
+              validation: "required"
+            - $formkit: text
+              name: name
+              id: name
+              key: name
+              label: 成员名称  
+              validation: "required"
+            - $formkit: text
+              name: position
+              id: position
+              key: position
+              label: 职位描述
+              validation: "required"
+    - group: document
+      label: 文档中心
+      formSchema:
+        - $formkit: repeater
+          name: menuList
+          id: menuList
+          key: menuList
+          label: 菜单列表
+          value: []
+          children: 
+            - $formkit: text
+              name: name
+              label: 菜单名称
+            - $formkit: repeater
+              name: childList
+              id: childList
+              key: childList
+              label: 菜单关联文章列表
+              value: []
+              children:
+                - $formkit: postSelect
+                  name: post
+                  label: 文章
+                  value: ""

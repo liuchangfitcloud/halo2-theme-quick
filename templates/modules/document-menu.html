@@ -1,0 +1,17 @@
+<nav class="sidenav navbar navbar-vertical navbar-expand-xs navbar-light bg-white" id="sidenav-main" th:fragment="getMenu(path)">
+    <div class="scrollbar-inner px-4">
+        <!-- Navigation -->
+        <div class="docs-sidebar pt-6 pt-lg-7">
+            <div th:each="menu : ${theme.config.document.menuList}">
+                <h6 class="mt-4" th:text="${menu.name}"></h6>
+                <ul class="nav flex-column">
+                    <li class="nav-item" th:each="child : ${menu.childList}">
+                        <a style="cursor: pointer;" th:href="@{${post.status.permalink}}" 
+                        th:with="post = ${postFinder.getByName(child.post)}" 
+                        th:text="${post.spec.title}" th:class="${post.spec.title == path} ? 'nav-link active' : 'nav-link'"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

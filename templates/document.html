@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Webpixels">
+    <title th:text="${site.title}"></title>
+    <!-- Favicon -->
+    <link th:if="${site.favicon}" th:herf="@{site.favicon}" />
+    <!-- Quick CSS -->
+    <link rel="stylesheet" th:href="@{/assets/css/quick-website.css}" id="stylesheet">
+</head>
+
+<body class="docs">
+    <!-- Nav -->
+    <th:block th:replace="~{modules/document-header}" />
+
+    <div class="container-fluid container-docs">
+        <!-- Sidenav -->
+        <th:block th:replace="~{modules/document-menu::getMenu('欢迎使用')}" />
+        <!-- Main content -->
+        <div class="main-content row position-relative pb-5">
+            <div class="col-xl-9 docs-content pb-5">
+                <!-- Docs title -->
+                <div class="docs-title">
+                    <h1>欢迎使用文档中心</h1>
+                    <p class="lead mb-0">点击可以查询你想要的文档</p>
+                </div>
+                <!-- Docs content -->
+            </div>
+            <div class="col-xl-3 docs-sidebar d-none d-xl-block">
+            </div>
+        </div>
+    </div>
+
+    <!-- Core JS  -->
+    <script th:src="@{/assets/libs/jquery/dist/jquery.min.js}"></script>
+    <script th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}"></script>
+    <!-- <script th:src="@{/assets/libs/svg-injector/dist/svg-injector.min.js}"></script>-->
+    <script th:src="@{/assets/libs/feather-icons/dist/feather.min.js}"></script>
+    <!-- Quick JS -->
+    <script th:src="@{/assets/js/quick-website.js}"></script>
+    <script th:src="@{/assets/libs/feather-icons/dist/feather.min.js}"></script> 
+    <script>
+        feather.replace({
+            'width': '1em',
+            'height': '1em'
+        })
+    </script>   
+</body>
+
+<style>
+    .navbar {
+        display: block !important;
+    }
+</style>
+
+</html>

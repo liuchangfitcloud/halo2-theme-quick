@@ -1,0 +1,41 @@
+<!-- Go Pro -->
+<div th:fragment="getPage(page)" class="header">
+    <div th:if="${theme.config.header.open_gonggao}" class="text-center text-white bg-dark text-truncate rounded-0 py-2 d-none d-lg-block" style="z-index: 1000;" target="_blank">
+        <span th:text="${theme.config.header.gonggao_text}"></span>
+    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white" th:fragment="frag(page)">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand" href="/" th:if="${site.logo}">
+                <img alt="Image placeholder" th:src="${site.logo}" id="navbar-logo">
+                <span th:text="${site.title}"></span>
+            </a>
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mt-4 mt-lg-0 ml-auto" th:with="menu = ${menuFinder.getPrimary()}">
+                    <div th:each="menuItem : ${menu.menuItems}" >
+                        <li th:if="${menuItem.children.size ==0}" class="nav-item">
+                            <a th:class="${page==menuItem.status.displayName} ? 'nav-link active' : 'nav-link'" class="nav-link" th:href="@{${menuItem.status.href}}" th:text="${menuItem.status.displayName}"></a>
+                        </li>
+                        <li th:if="${menuItem.children.size>0}" class="nav-item dropdown dropdown-animate" data-toggle="hover">
+                            <a class="nav-link" th:text="${menuItem.status.displayName}"></a>
+                            <div class="dropdown-menu dropdown-menu-single" th:if="${menuItem.children}" th:with="menuChild = ${menuItem.children}">
+                                <a th:each="c : ${menuChild}" th:href="@{${c.status.href}}" th:text="${c.spec.displayName}" class="dropdown-item"></a>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
+                <!-- Button -->
+                <a th:if="${theme.config.header.open_bnt}" th:text="${theme.config.header.btn_name}" 
+                class="navbar-btn btn btn-sm btn-primary d-none d-lg-inline-block ml-3" 
+                th:href="@{${theme.config.header.btn_href}}">
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
